@@ -23,14 +23,44 @@
       overflow: hidden;
     }
 
+    /* Fancy prompt box */
     .container {
-      background: white;
-      padding: 40px 30px 50px;
-      border-radius: 20px;
+      position: relative;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 45px 30px 55px;
+      border-radius: 25px;
       text-align: center;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
       width: 90%;
       max-width: 420px;
+      box-shadow:
+        0 20px 50px rgba(0,0,0,0.2),
+        inset 0 0 0 2px rgba(255, 64, 129, 0.15);
+      animation: float 4s ease-in-out infinite;
+      backdrop-filter: blur(6px);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Decorative hearts */
+    .container::before,
+    .container::after {
+      content: "💖";
+      position: absolute;
+      font-size: 22px;
+      opacity: 0.4;
+    }
+
+    .container::before {
+      top: 12px;
+      left: 16px;
+    }
+
+    .container::after {
+      bottom: 14px;
+      right: 18px;
     }
 
     h1 {
@@ -57,10 +87,11 @@
     }
 
     #yesBtn {
-      background: #ff4081;
+      background: linear-gradient(135deg, #ff4081, #ff77a9);
       color: white;
       left: 20%;
       bottom: 20px;
+      box-shadow: 0 10px 25px rgba(255, 64, 129, 0.4);
     }
 
     #yesBtn:hover {
@@ -68,7 +99,7 @@
     }
 
     #noBtn {
-      background: #ddd;
+      background: #e0e0e0;
       color: #333;
       left: 55%;
       bottom: 20px;
