@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>hehehehehe</title>
+  <title>Will You Be My Valentine?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
     * {
       box-sizing: border-box;
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: "Poppins", system-ui, sans-serif;
     }
 
     body {
@@ -27,6 +27,7 @@
       width: 100%;
       max-width: 420px;
       padding: 20px;
+      z-index: 2;
     }
 
     h1 {
@@ -42,9 +43,8 @@
       border-radius: 999px;
       cursor: pointer;
       position: absolute;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
       user-select: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     }
 
     #yesBtn {
@@ -52,25 +52,47 @@
       color: #fff;
       left: 50%;
       transform: translateX(-120%);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    /* YES button gets bigger automatically */
     #yesBtn:hover {
-      transform: translateX(-120%) scale(1.25);
-      box-shadow: 0 14px 35px rgba(0,0,0,0.35);
+      transform: translateX(-120%) scale(1.3);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.4);
     }
 
     #noBtn {
-      background-color: #ffffff;
+      background-color: #fff;
       color: #ff2e63;
       left: 50%;
       transform: translateX(20%);
+      transition: left 0.6s ease, top 0.6s ease;
+    }
+
+    .shake {
+      animation: shake 0.25s;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(20%) translateX(0); }
+      25% { transform: translateX(20%) translateX(-4px); }
+      50% { transform: translateX(20%) translateX(4px); }
+      75% { transform: translateX(20%) translateX(-4px); }
+      100% { transform: translateX(20%) translateX(0); }
+    }
+
+    .taunt {
+      position: absolute;
+      font-size: 0.9rem;
+      color: #fff;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
     }
 
     .success {
       display: none;
       color: #fff;
-      animation: fadeIn 0.5s ease forwards;
+      animation: fadeIn 0.6s ease forwards;
     }
 
     .success h2 {
@@ -86,13 +108,23 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.95);
-      }
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* 💕 Heart Confetti */
+    .heart {
+      position: fixed;
+      top: -10px;
+      font-size: 20px;
+      animation: fall linear forwards;
+      z-index: 1;
+    }
+
+    @keyframes fall {
       to {
-        opacity: 1;
-        transform: scale(1);
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
       }
     }
   </style>
@@ -100,56 +132,92 @@
 
 <body>
   <div class="container">
-    <h1 id="question">Vidhi, Will you be my Valentine? 💘</h1>
+    <h1 id="question">Vidhiii, Will you be my Valentine? 💘</h1>
 
     <button id="yesBtn">Yes ❤️</button>
     <button id="noBtn">No 🙄</button>
 
+    <div class="taunt" id="taunt">WAIT—</div>
+
     <div class="success" id="successMsg">
-      <h2>Yesss!! 💖🎉</h2>
-      <img
-        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHF1bDRmb2xtdWswZmoydmJzM3RqZGppNDQwM3A2NHQwOG53eWllbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/s2qXK8wAvkHTO/giphy.gif"
-        alt="Celebration GIF"
-      />
+      <h2 id="successText">Yayyyy I knew it! 💖🎉</h2>
+      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHF1bDRmb2xtdWswZmoydmJzM3RqZGppNDQwM3A2NHQwOG53eWllbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/s2qXK8wAvkHTO/giphy.gif" />
     </div>
   </div>
 
-  <!-- Yay sound -->
-  <audio id="yaySound">
-    <source src="https://www.myinstants.com/media/sounds/yay.mp3" type="audio/mpeg">
+  <audio id="yaySound" preload="auto">
+    <source src="yayyyy_sound_effect.mp3" type="audio/mpeg">
   </audio>
 
   <script>
+    const herName = "Vidhi"; // ← change name here if you want
+
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
     const question = document.getElementById("question");
     const successMsg = document.getElementById("successMsg");
+    const successText = document.getElementById("successText");
     const yaySound = document.getElementById("yaySound");
     const container = document.querySelector(".container");
+    const taunt = document.getElementById("taunt");
+
+    let panic = 0;
+    const screams = ["WAIT—", "NO NO NO", "PLS 😭", "STOP", "OK OK 😭"];
 
     function moveNoButton() {
-      const containerRect = container.getBoundingClientRect();
+      panic++;
 
-      const maxX = containerRect.width - noBtn.offsetWidth;
-      const maxY = containerRect.height - noBtn.offsetHeight;
+      const speed = Math.max(0.15, 0.6 - panic * 0.08);
+      noBtn.style.transition = `left ${speed}s ease, top ${speed}s ease`;
 
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
+      noBtn.classList.add("shake");
+      setTimeout(() => noBtn.classList.remove("shake"), 250);
+
+      taunt.innerText = screams[Math.min(panic - 1, screams.length - 1)];
+      taunt.style.opacity = 1;
+      setTimeout(() => taunt.style.opacity = 0, 400);
+
+      const rect = container.getBoundingClientRect();
+      const x = Math.random() * (rect.width - noBtn.offsetWidth);
+      const y = Math.random() * (rect.height - noBtn.offsetHeight);
 
       noBtn.style.left = `${x}px`;
       noBtn.style.top = `${y}px`;
+
+      taunt.style.left = `${x + 10}px`;
+      taunt.style.top = `${y - 20}px`;
     }
 
     noBtn.addEventListener("mouseenter", moveNoButton);
     noBtn.addEventListener("click", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
-      yaySound.play();
+      yaySound.currentTime = 0;
+      yaySound.play().catch(() => {});
+
       question.style.display = "none";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
+      taunt.style.display = "none";
+
+      successText.innerText = `Yesss ${herName}!! 💖🎉`;
       successMsg.style.display = "block";
+
+      startConfetti();
     });
+
+    function startConfetti() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 2 + Math.random() * 3 + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+      }, 200);
+    }
   </script>
 </body>
 </html>
