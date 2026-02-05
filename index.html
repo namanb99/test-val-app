@@ -37,6 +37,10 @@
       margin-bottom: 25px;
     }
 
+    .prompt {
+      display: block;
+    }
+
     .buttons {
       position: relative;
       height: 130px;
@@ -100,19 +104,25 @@
 <body>
 
   <div class="container">
-    <h1>Vidhi, Will you be my Valentine? 💘</h1>
 
-    <div class="buttons">
-      <button id="yesBtn">Yes 💖</button>
-      <button id="noBtn">No 😒</button>
+    <!-- PROMPT SECTION -->
+    <div class="prompt">
+      <h1>Vidhii, Will you be my Valentine? 💘</h1>
+
+      <div class="buttons">
+        <button id="yesBtn">Yes 💖</button>
+        <button id="noBtn">No 😒</button>
+      </div>
+
+      <div id="taunt">Nice try 😏</div>
     </div>
 
-    <div id="taunt">Nice try 😏</div>
-
+    <!-- RESULT -->
     <div id="result">
-      <h2>Yayyyy!! I knew it🎉🥰</h2>
+      <h2>Yayyy!! I knew it 🎉🥰</h2>
       <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHF1bDRmb2xtdWswZmoydmJzM3RqZGppNDQwM3A2NHQwOG53eWllbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/s2qXK8wAvkHTO/giphy.gif" alt="Celebration">
     </div>
+
   </div>
 
   <!-- LOCAL AUDIO -->
@@ -127,6 +137,7 @@
     const result = document.getElementById("result");
     const sound = document.getElementById("yaySound");
     const container = document.querySelector(".container");
+    const prompt = document.querySelector(".prompt");
 
     const taunts = [
       "Oops 😜",
@@ -159,8 +170,7 @@
       sound.currentTime = 0;
       sound.play().catch(() => {});
 
-      document.querySelector(".buttons").style.display = "none";
-      taunt.style.display = "none";
+      prompt.style.display = "none";
       result.style.display = "block";
     });
   </script>
