@@ -2,113 +2,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>hehehehe❤️</title>
+  <title>hehehehe💘</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     * {
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", sans-serif;
     }
 
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      background: radial-gradient(circle at top, #ffd1dc, #ff9aa2);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
     }
 
-    /* Fancy prompt box */
     .container {
-      position: relative;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 45px 30px 55px;
-      border-radius: 25px;
+      background: linear-gradient(145deg, #fff, #ffe6ee);
+      padding: 40px 30px 45px;
+      border-radius: 26px;
       text-align: center;
+      box-shadow:
+        0 20px 40px rgba(255, 0, 100, 0.25),
+        inset 0 0 40px rgba(255,255,255,0.6);
       width: 90%;
       max-width: 420px;
-      box-shadow:
-        0 20px 50px rgba(0,0,0,0.2),
-        inset 0 0 0 2px rgba(255, 64, 129, 0.15);
-      animation: float 4s ease-in-out infinite;
-      backdrop-filter: blur(6px);
+      position: relative;
+      animation: popIn 0.8s ease;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    /* Decorative hearts */
-    .container::before,
-    .container::after {
-      content: "💖";
-      position: absolute;
-      font-size: 22px;
-      opacity: 0.4;
-    }
-
-    .container::before {
-      top: 12px;
-      left: 16px;
-    }
-
-    .container::after {
-      bottom: 14px;
-      right: 18px;
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     h1 {
-      color: #e60073;
-      margin-bottom: 25px;
-      font-weight: 700;
+      font-family: "Playfair Display", serif;
+      color: #d81b60;
+      margin-bottom: 30px;
+      font-size: 28px;
     }
 
     .buttons {
       position: relative;
-      height: 160px;
-      margin-top: 20px;
+      height: 140px;
     }
 
     button {
       border: none;
-      padding: 16px 32px;
+      padding: 16px 34px;
       font-size: 18px;
       border-radius: 40px;
       cursor: pointer;
       position: absolute;
-      transition: all 0.35s ease;
-      touch-action: manipulation;
+      transition: transform 0.25s ease, left 0.4s ease, top 0.4s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
     }
 
     #yesBtn {
-      background: linear-gradient(135deg, #ff4081, #ff77a9);
+      background: linear-gradient(135deg, #ff4d6d, #ff758f);
       color: white;
-      left: 20%;
+      left: 20px;
       bottom: 20px;
-      box-shadow: 0 10px 25px rgba(255, 64, 129, 0.4);
     }
 
-    #yesBtn:hover {
-      transform: scale(1.15);
+    #yesBtn:hover,
+    #yesBtn:active {
+      transform: scale(1.25);
     }
 
     #noBtn {
-      background: #e0e0e0;
-      color: #333;
-      left: 55%;
+      background: #eee;
+      color: #555;
+      right: 20px;
       bottom: 20px;
+      pointer-events: none;
     }
 
     #taunt {
-      margin-top: 20px;
+      margin-top: 18px;
       font-size: 15px;
-      color: #ff0055;
+      color: #ff3366;
       min-height: 22px;
       font-weight: 600;
       opacity: 0;
@@ -117,93 +98,110 @@
 
     #result {
       display: none;
-      margin-top: 20px;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     #result h2 {
-      color: #e60073;
-      font-weight: 700;
+      font-family: "Playfair Display", serif;
+      color: #d81b60;
+      margin-bottom: 15px;
     }
 
     #result img {
       width: 100%;
-      border-radius: 15px;
-      margin-top: 15px;
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container" id="card">
 
-  <div class="prompt">
-    <h1>Vidhii, Will you be my Valentine? 💘</h1>
+    <div id="prompt">
+      <h1>Vidhii, will you be my Valentine? 💖</h1>
 
-    <div class="buttons" id="buttonArea">
-      <button id="yesBtn">Yes 💖</button>
-      <button id="noBtn">No 😒</button>
+      <div class="buttons">
+        <button id="yesBtn">Yes 💘</button>
+        <button id="noBtn">No 🙃</button>
+      </div>
+
+      <div id="taunt">Nice try 😏</div>
     </div>
 
-    <div id="taunt">Nice try 😏</div>
+    <div id="result">
+      <h2>Yayyy!! I knew it 🥰🎉</h2>
+      <img src="https://media.giphy.com/media/s2qXK8wAvkHTO/giphy.gif" alt="Celebration">
+    </div>
+
   </div>
 
-  <div id="result">
-    <h2>Yayyy!! I knew it 🎉🥰</h2>
-    <img src="https://media.giphy.com/media/s2qXK8wAvkHTO/giphy.gif" alt="Celebration">
-  </div>
+  <!-- LOCAL AUDIO -->
+  <audio id="yaySound" preload="auto">
+    <source src="yayyyy_sound_effect.mp3" type="audio/mpeg">
+  </audio>
 
-</div>
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const taunt = document.getElementById("taunt");
+    const result = document.getElementById("result");
+    const prompt = document.getElementById("prompt");
+    const sound = document.getElementById("yaySound");
+    const card = document.getElementById("card");
 
-<audio id="yaySound" preload="auto">
-  <source src="yayyyy_sound_effect.mp3" type="audio/mpeg">
-</audio>
+    const taunts = [
+      "Oops 😜",
+      "Almost!",
+      "Nope 😏",
+      "Try again 😈",
+      "You wish 😂"
+    ];
 
-<script>
-  const noBtn = document.getElementById("noBtn");
-  const yesBtn = document.getElementById("yesBtn");
-  const taunt = document.getElementById("taunt");
-  const result = document.getElementById("result");
-  const sound = document.getElementById("yaySound");
-  const buttonArea = document.getElementById("buttonArea");
-  const prompt = document.querySelector(".prompt");
+    function moveNoButton() {
+      const cardRect = card.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
 
-  const taunts = [
-    "Oops 😜",
-    "Almost 😏",
-    "Not today 😂",
-    "Nice try 😈",
-    "Nope 😌"
-  ];
+      const padding = 20;
+      const safeZone = cardRect.width / 2;
 
-  function moveNoButton() {
-    const areaRect = buttonArea.getBoundingClientRect();
-    const btnRect = noBtn.getBoundingClientRect();
+      let x, y;
 
-    const maxX = areaRect.width - btnRect.width;
-    const maxY = areaRect.height - btnRect.height;
+      do {
+        x = Math.random() * (cardRect.width - btnRect.width - padding);
+        y = Math.random() * (cardRect.height - btnRect.height - padding);
+      } while (x < safeZone);
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+      noBtn.style.right = "auto";
+      noBtn.style.bottom = "auto";
 
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-    noBtn.style.bottom = "auto";
+      taunt.textContent = taunts[Math.floor(Math.random() * taunts.length)];
+      taunt.style.opacity = 1;
 
-    taunt.textContent = taunts[Math.floor(Math.random() * taunts.length)];
-    taunt.style.opacity = 1;
-  }
+      if (navigator.vibrate) navigator.vibrate(10);
+    }
 
-  noBtn.addEventListener("mouseenter", moveNoButton);
-  noBtn.addEventListener("touchstart", moveNoButton);
+    // Desktop
+    noBtn.addEventListener("mouseenter", moveNoButton);
 
-  yesBtn.addEventListener("click", () => {
-    sound.currentTime = 0;
-    sound.play().catch(() => {});
-    prompt.style.display = "none";
-    result.style.display = "block";
-  });
-</script>
+    // Mobile
+    document.addEventListener("touchstart", moveNoButton, { passive: true });
+
+    yesBtn.addEventListener("click", () => {
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+      prompt.style.display = "none";
+      result.style.display = "block";
+    });
+  </script>
 
 </body>
 </html>
