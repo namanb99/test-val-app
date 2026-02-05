@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Will You Be My Valentine?</title>
+  <title>hehehehehe</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -33,18 +33,17 @@
       color: #fff;
       font-size: 2.4rem;
       margin-bottom: 50px;
-      transition: opacity 0.3s ease;
     }
 
     button {
-      padding: 14px 32px;
+      padding: 16px 36px;
       font-size: 1.2rem;
       border: none;
       border-radius: 999px;
       cursor: pointer;
       position: absolute;
-      transition: transform 0.15s ease;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
       user-select: none;
     }
 
@@ -55,15 +54,17 @@
       transform: translateX(-120%);
     }
 
+    /* YES button gets bigger automatically */
+    #yesBtn:hover {
+      transform: translateX(-120%) scale(1.25);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.35);
+    }
+
     #noBtn {
       background-color: #ffffff;
       color: #ff2e63;
       left: 50%;
       transform: translateX(20%);
-    }
-
-    #yesBtn:hover {
-      transform: translateX(-120%) scale(1.05);
     }
 
     .success {
@@ -99,25 +100,31 @@
 
 <body>
   <div class="container">
-    <h1 id="question">Will you be my Valentine? 💘</h1>
+    <h1 id="question">Vidhi, Will you be my Valentine? 💘</h1>
 
     <button id="yesBtn">Yes ❤️</button>
     <button id="noBtn">No 🙄</button>
 
     <div class="success" id="successMsg">
       <h2>Yesss!! 💖🎉</h2>
-      <img 
-        src="https://media.giphy.com/media/26u4cqiYI30juCOGY/giphy.gif" 
+      <img
+        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHF1bDRmb2xtdWswZmoydmJzM3RqZGppNDQwM3A2NHQwOG53eWllbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/s2qXK8wAvkHTO/giphy.gif"
         alt="Celebration GIF"
       />
     </div>
   </div>
+
+  <!-- Yay sound -->
+  <audio id="yaySound">
+    <source src="https://www.myinstants.com/media/sounds/yay.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
     const question = document.getElementById("question");
     const successMsg = document.getElementById("successMsg");
+    const yaySound = document.getElementById("yaySound");
     const container = document.querySelector(".container");
 
     function moveNoButton() {
@@ -137,6 +144,7 @@
     noBtn.addEventListener("click", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
+      yaySound.play();
       question.style.display = "none";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
