@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Will You Be My Valentine?</title>
+  <title>hehehehe❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
     * {
       box-sizing: border-box;
-      font-family: "Poppins", system-ui, sans-serif;
+      font-family: "Comic Sans MS", "Poppins", cursive;
     }
 
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -22,202 +22,148 @@
     }
 
     .container {
+      background: white;
+      padding: 40px 30px 50px;
+      border-radius: 20px;
       text-align: center;
-      position: relative;
-      width: 100%;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      width: 90%;
       max-width: 420px;
-      padding: 20px;
-      z-index: 2;
+      position: relative;
     }
 
     h1 {
-      color: #fff;
-      font-size: 2.4rem;
-      margin-bottom: 50px;
+      color: #e60073;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 130px;
+      margin-top: 20px;
     }
 
     button {
-      padding: 16px 36px;
-      font-size: 1.2rem;
       border: none;
-      border-radius: 999px;
+      padding: 14px 30px;
+      font-size: 18px;
+      border-radius: 30px;
       cursor: pointer;
       position: absolute;
-      user-select: none;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      transition:
+        transform 0.25s ease,
+        left 0.45s ease,
+        top 0.45s ease;
     }
 
     #yesBtn {
-      background-color: #ff2e63;
-      color: #fff;
-      left: 50%;
-      transform: translateX(-120%);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      background: #ff4081;
+      color: white;
+      left: 40px;
+      bottom: 20px;
     }
 
     #yesBtn:hover {
-      transform: translateX(-120%) scale(1.3);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.4);
+      transform: scale(1.25);
     }
 
     #noBtn {
-      background-color: #fff;
-      color: #ff2e63;
-      left: 50%;
-      transform: translateX(20%);
-      transition: left 0.6s ease, top 0.6s ease;
+      background: #ccc;
+      color: #333;
+      right: 40px;
+      bottom: 20px;
     }
 
-    .shake {
-      animation: shake 0.25s;
-    }
-
-    @keyframes shake {
-      0% { transform: translateX(20%) translateX(0); }
-      25% { transform: translateX(20%) translateX(-4px); }
-      50% { transform: translateX(20%) translateX(4px); }
-      75% { transform: translateX(20%) translateX(-4px); }
-      100% { transform: translateX(20%) translateX(0); }
-    }
-
-    .taunt {
-      position: absolute;
-      font-size: 0.9rem;
-      color: #fff;
+    #taunt {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #ff0055;
+      min-height: 22px;
+      font-weight: bold;
       opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.3s ease;
     }
 
-    .success {
+    #result {
       display: none;
-      color: #fff;
-      animation: fadeIn 0.6s ease forwards;
+      margin-top: 20px;
     }
 
-    .success h2 {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-    }
-
-    .success img {
+    #result img {
       width: 100%;
-      max-width: 320px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    /* 💕 Heart Confetti */
-    .heart {
-      position: fixed;
-      top: -10px;
-      font-size: 20px;
-      animation: fall linear forwards;
-      z-index: 1;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
+      border-radius: 15px;
+      margin-top: 15px;
     }
   </style>
 </head>
 
 <body>
+
   <div class="container">
-    <h1 id="question">Vidhiii, Will you be my Valentine? 💘</h1>
+    <h1>Vidhi, Will you be my Valentine? 💘</h1>
 
-    <button id="yesBtn">Yes ❤️</button>
-    <button id="noBtn">No 🙄</button>
+    <div class="buttons">
+      <button id="yesBtn">Yes 💖</button>
+      <button id="noBtn">No 😒</button>
+    </div>
 
-    <div class="taunt" id="taunt">WAIT—</div>
+    <div id="taunt">Nice try 😏</div>
 
-    <div class="success" id="successMsg">
-      <h2 id="successText">Yayyyy I knew it! 💖🎉</h2>
-      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHF1bDRmb2xtdWswZmoydmJzM3RqZGppNDQwM3A2NHQwOG53eWllbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/s2qXK8wAvkHTO/giphy.gif" />
+    <div id="result">
+      <h2>Yayyyy!! I knew it🎉🥰</h2>
+      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHF1bDRmb2xtdWswZmoydmJzM3RqZGppNDQwM3A2NHQwOG53eWllbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/s2qXK8wAvkHTO/giphy.gif" alt="Celebration">
     </div>
   </div>
 
+  <!-- LOCAL AUDIO -->
   <audio id="yaySound" preload="auto">
     <source src="yayyyy_sound_effect.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    const herName = "Vidhi"; // ← change name here if you want
-
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
-    const question = document.getElementById("question");
-    const successMsg = document.getElementById("successMsg");
-    const successText = document.getElementById("successText");
-    const yaySound = document.getElementById("yaySound");
-    const container = document.querySelector(".container");
     const taunt = document.getElementById("taunt");
+    const result = document.getElementById("result");
+    const sound = document.getElementById("yaySound");
+    const container = document.querySelector(".container");
 
-    let panic = 0;
-    const screams = ["WAIT—", "NO NO NO", "PLS 😭", "STOP", "OK OK 😭"];
+    const taunts = [
+      "Oops 😜",
+      "Almost had it!",
+      "Nope nope nope 😏",
+      "Try again 😈",
+      "You really thought? 😂"
+    ];
 
-    function moveNoButton() {
-      panic++;
+    noBtn.addEventListener("mouseenter", () => {
+      const containerRect = container.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
 
-      const speed = Math.max(0.15, 0.6 - panic * 0.08);
-      noBtn.style.transition = `left ${speed}s ease, top ${speed}s ease`;
+      const maxX = containerRect.width - btnRect.width - 20;
+      const maxY = containerRect.height - btnRect.height - 20;
 
-      noBtn.classList.add("shake");
-      setTimeout(() => noBtn.classList.remove("shake"), 250);
-
-      taunt.innerText = screams[Math.min(panic - 1, screams.length - 1)];
-      taunt.style.opacity = 1;
-      setTimeout(() => taunt.style.opacity = 0, 400);
-
-      const rect = container.getBoundingClientRect();
-      const x = Math.random() * (rect.width - noBtn.offsetWidth);
-      const y = Math.random() * (rect.height - noBtn.offsetHeight);
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
 
       noBtn.style.left = `${x}px`;
       noBtn.style.top = `${y}px`;
+      noBtn.style.right = "auto";
+      noBtn.style.bottom = "auto";
 
-      taunt.style.left = `${x + 10}px`;
-      taunt.style.top = `${y - 20}px`;
-    }
-
-    noBtn.addEventListener("mouseenter", moveNoButton);
-    noBtn.addEventListener("click", moveNoButton);
-
-    yesBtn.addEventListener("click", () => {
-      yaySound.currentTime = 0;
-      yaySound.play().catch(() => {});
-
-      question.style.display = "none";
-      yesBtn.style.display = "none";
-      noBtn.style.display = "none";
-      taunt.style.display = "none";
-
-      successText.innerText = `Yesss ${herName}!! 💖🎉`;
-      successMsg.style.display = "block";
-
-      startConfetti();
+      taunt.textContent = taunts[Math.floor(Math.random() * taunts.length)];
+      taunt.style.opacity = 1;
     });
 
-    function startConfetti() {
-      setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerText = "💖";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = 2 + Math.random() * 3 + "s";
-        document.body.appendChild(heart);
+    yesBtn.addEventListener("click", () => {
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
 
-        setTimeout(() => heart.remove(), 5000);
-      }, 200);
-    }
+      document.querySelector(".buttons").style.display = "none";
+      taunt.style.display = "none";
+      result.style.display = "block";
+    });
   </script>
+
 </body>
 </html>
