@@ -2,58 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>hehehehe💘</title>
+  <title>Only One Right Answer ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     * {
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+      font-family: "Poppins", "Comic Sans MS", cursive;
     }
 
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(-45deg, #ff9aa2, #ffb7c5, #ffd1dc);
-      background-size: 400% 400%;
-      animation: bgFlow 14s ease infinite;
+      background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
     }
 
-    @keyframes bgFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Emoji rain layer */
-    .emoji {
+    /* ❤️ Emoji Rain */
+    .heart {
       position: fixed;
       top: -10%;
-      font-size: 24px;
-      animation: fall linear forwards;
+      font-size: 22px;
+      animation: fall linear infinite;
+      opacity: 0.8;
       pointer-events: none;
-      z-index: 1;
     }
 
     @keyframes fall {
       to {
-        transform: translateY(120vh) rotate(360deg);
-        opacity: 0;
+        transform: translateY(110vh);
       }
     }
 
     .container {
-      background: linear-gradient(145deg, #fff, #ffe6ee);
-      padding: 44px 32px 50px;
-      border-radius: 28px;
+      background: rgba(255,255,255,0.95);
+      padding: 45px 35px 55px;
+      border-radius: 25px;
       text-align: center;
-      box-shadow: 0 30px 60px rgba(255, 0, 100, 0.3);
+      box-shadow: 0 25px 60px rgba(255,0,100,0.35);
       width: 90%;
       max-width: 420px;
       position: relative;
@@ -61,180 +50,178 @@
     }
 
     h1 {
-      font-family: "Playfair Display", serif;
-      color: #d81b60;
+      color: #e60073;
       margin-bottom: 30px;
-      font-size: 28px;
+      font-size: 26px;
+      text-shadow: 0 0 10px rgba(255,0,120,0.3);
     }
 
     .buttons {
       position: relative;
-      height: 150px;
+      height: 160px;
+      margin-top: 20px;
     }
 
     button {
       border: none;
-      padding: 16px 38px;
+      padding: 15px 34px;
       font-size: 18px;
-      border-radius: 40px;
+      border-radius: 35px;
       cursor: pointer;
       position: absolute;
       transition:
-        transform 0.25s ease,
-        left 0.45s ease,
-        top 0.45s ease;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-      user-select: none;
+        transform 0.3s ease,
+        left 0.6s cubic-bezier(.25,1.5,.5,1),
+        top 0.6s cubic-bezier(.25,1.5,.5,1);
     }
 
     #yesBtn {
-      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+      background: linear-gradient(135deg, #ff4d88, #ff1f6b);
       color: white;
-      left: 20px;
+      left: 30px;
       bottom: 20px;
+      box-shadow: 0 0 20px rgba(255,0,120,0.5);
     }
 
-    #yesBtn:hover,
-    #yesBtn:active {
-      transform: scale(1.3);
+    #yesBtn:hover {
+      transform: scale(1.25);
     }
 
     #noBtn {
-      background: #eee;
-      color: #555;
-      right: 20px;
+      background: #ddd;
+      color: #444;
+      right: 30px;
       bottom: 20px;
     }
 
     #taunt {
-      margin-top: 18px;
-      font-size: 15px;
-      color: #ff3366;
-      min-height: 22px;
-      font-weight: 600;
+      margin-top: 20px;
+      font-size: 16px;
+      color: #ff0055;
+      min-height: 24px;
+      font-weight: bold;
       opacity: 0;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.4s ease;
     }
 
     #result {
       display: none;
     }
 
+    #result h2 {
+      color: #ff2f7d;
+      margin-bottom: 15px;
+    }
+
     #result img {
       width: 100%;
       border-radius: 18px;
-      margin-top: 15px;
+    }
+
+    /* Mobile tuning */
+    @media (max-width: 768px) {
+      .buttons {
+        height: 200px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<div class="container" id="card">
-  <div id="prompt">
-    <h1>Vidhii, will you be my Valentine? 💖</h1>
+  <!-- Emoji Rain -->
+  <script>
+    const emojis = ["❤️","💖","💕","💘"];
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 9000);
+    }, 400);
+  </script>
 
-    <div class="buttons" id="btnArea">
-      <button id="yesBtn">Yes 💘</button>
-      <button id="noBtn">No 🙃</button>
+  <div class="container">
+    <div class="prompt">
+      <h1>Vidhii, will you be my Valentine? 💘</h1>
+
+      <div class="buttons">
+        <button id="yesBtn">Yes 💖</button>
+        <button id="noBtn">No 😒</button>
+      </div>
+
+      <div id="taunt"></div>
     </div>
 
-    <div id="taunt">Nice try 😏</div>
+    <div id="result">
+      <h2>Yayyy!! I knew it 🎉🥰</h2>
+      <img src="https://media.giphy.com/media/s2qXK8wAvkHTO/giphy.gif" />
+    </div>
   </div>
 
-  <div id="result">
-    <h2>Yayyy!! I knew it 🥰🎉</h2>
-    <img src="https://media.giphy.com/media/s2qXK8wAvkHTO/giphy.gif">
-  </div>
-</div>
+  <!-- LOCAL AUDIO -->
+  <audio id="yaySound" preload="auto">
+    <source src="yayyyy_sound_effect_trimmed.mp3" type="audio/mpeg">
+  </audio>
 
-<audio id="yaySound" preload="auto">
-  <source src="yayyyy_sound_effect.mp3" type="audio/mpeg">
-</audio>
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const taunt = document.getElementById("taunt");
+    const result = document.getElementById("result");
+    const sound = document.getElementById("yaySound");
+    const container = document.querySelector(".container");
+    const prompt = document.querySelector(".prompt");
 
-<script>
-  const noBtn = document.getElementById("noBtn");
-  const yesBtn = document.getElementById("yesBtn");
-  const taunt = document.getElementById("taunt");
-  const result = document.getElementById("result");
-  const prompt = document.getElementById("prompt");
-  const sound = document.getElementById("yaySound");
-  const card = document.getElementById("btnArea");
+    const taunts = [
+      "Nice try 😏",
+      "Nope 😜",
+      "Too slow 😂",
+      "Not happening 😈",
+      "Only one option 💕"
+    ];
 
-  const taunts = ["Too slow 😜", "Almost 😏", "No chance 😈", "Hehe 😌"];
+    function moveNoButton() {
+      const rect = container.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
 
-  function moveNoSmoothly() {
-    const area = card.getBoundingClientRect();
-    const btn = noBtn.getBoundingClientRect();
+      const padding = 30;
+      const maxX = rect.width - btnRect.width - padding;
+      const maxY = rect.height - btnRect.height - padding;
 
-    let x;
-    do {
-      x = Math.random() * (area.width - btn.width);
-    } while (x < area.width / 2); // NEVER near Yes
+      let x = Math.random() * maxX;
+      let y = Math.random() * maxY;
 
-    const y = Math.random() * (area.height - btn.height);
+      // Avoid YES zone entirely
+      if (x < rect.width / 2) x += rect.width / 2;
 
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-    noBtn.style.right = "auto";
-    noBtn.style.bottom = "auto";
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+      noBtn.style.right = "auto";
+      noBtn.style.bottom = "auto";
 
-    taunt.textContent = taunts[Math.floor(Math.random() * taunts.length)];
-    taunt.style.opacity = 1;
-  }
-
-  /* Laptop: proximity-based mouse movement */
-  document.addEventListener("mousemove", (e) => {
-    const r = noBtn.getBoundingClientRect();
-    const buffer = 60;
-
-    if (
-      e.clientX > r.left - buffer &&
-      e.clientX < r.right + buffer &&
-      e.clientY > r.top - buffer &&
-      e.clientY < r.bottom + buffer
-    ) {
-      moveNoSmoothly();
+      taunt.textContent = taunts[Math.floor(Math.random() * taunts.length)];
+      taunt.style.opacity = 1;
     }
-  });
 
-  /* Mobile */
-  document.addEventListener("touchstart", (e) => {
-    const t = e.touches[0];
-    const r = noBtn.getBoundingClientRect();
-    const buffer = 50;
+    /* Laptop hover */
+    noBtn.addEventListener("mouseenter", moveNoButton);
 
-    if (
-      t.clientX > r.left - buffer &&
-      t.clientX < r.right + buffer &&
-      t.clientY > r.top - buffer &&
-      t.clientY < r.bottom + buffer
-    ) {
-      moveNoSmoothly();
-    }
-  }, { passive: true });
+    /* Mobile touch */
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
 
-  noBtn.addEventListener("click", e => e.preventDefault());
-
-  yesBtn.addEventListener("click", () => {
-    sound.currentTime = 0;
-    sound.play().catch(() => {});
-    prompt.style.display = "none";
-    result.style.display = "block";
-  });
-
-  /* Emoji rain */
-  const emojis = ["💖","💘","💕","💗","🥰","😍"];
-  setInterval(() => {
-    const e = document.createElement("div");
-    e.className = "emoji";
-    e.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    e.style.left = Math.random() * 100 + "vw";
-    e.style.animationDuration = 6 + Math.random() * 4 + "s";
-    document.body.appendChild(e);
-    setTimeout(() => e.remove(), 10000);
-  }, 500);
-</script>
+    yesBtn.addEventListener("click", () => {
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+      prompt.style.display = "none";
+      result.style.display = "block";
+    });
+  </script>
 
 </body>
 </html>
